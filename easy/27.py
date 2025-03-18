@@ -15,25 +15,18 @@ from typing import List
 # region Solution
 
 def remove_element(nums: List[int], val: int) -> int:
-    length = len(nums)
+    left = 0
 
-    i = 0
+    for right in range(len(nums)):
+        if nums[left] == val and nums[right] != val:
+            left_original = nums[left]
+            nums[left] = nums[right]
+            nums[right] = left_original
 
-    while i < length:
-        num = nums[i]
+        if nums[left] != val:
+            left += 1
 
-        # We need to remove this value
-        if num == val:
-
-            for j in range(i + 1, length):
-                nums[j - 1] = nums[j]
-
-            length -= 1
-
-        if nums[i] != val:
-            i += 1
-
-    return length
+    return left
 
 
 # endregion
