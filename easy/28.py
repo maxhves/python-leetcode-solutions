@@ -6,17 +6,16 @@ is not part of haystack.
 
 # region Solution
 
-# Let's use two pointers to iterate over haystack.
-# Left will track the beginning of the string.
-# Right will track characters matching in needle.
-# If right pointer exceeds past the length of needle, we found a match, return left
-# Otherwise just return -1.
-
-# We can't assume that when we have checked a whole string that left will begin from end of that string check
-# We have to check every single position of the string.
-
 def str_str(haystack: str, needle: str) -> int:
-    return 0
+    current_str = haystack
+
+    while len(current_str) > 0:
+        if not current_str.startswith(needle):
+            current_str = current_str[1:]
+        else:
+            return len(haystack) - len(current_str)
+
+    return -1
 
 
 # endregion
