@@ -18,12 +18,8 @@ def remove_element(nums: List[int], val: int) -> int:
     left = 0
 
     for right in range(len(nums)):
-        if nums[left] == val and nums[right] != val:
-            left_original = nums[left]
+        if nums[right] != val:
             nums[left] = nums[right]
-            nums[right] = left_original
-
-        if nums[left] != val:
             left += 1
 
     return left
