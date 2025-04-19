@@ -11,8 +11,31 @@ from typing import List
 
 # region Solution
 
-
 def num_islands(grid: List[List[str]]) -> int:
+    rows = len(grid)
+    columns = len(grid[0])
+    island_count = 0
+
+    def dfs(row: int, column: int):
+        if row >= rows or row < 0 or column >= columns or column < 0 or grid[row][column] == "0":
+            return
+
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        grid[row][column] = "0"
+
+        for x, y in directions:
+            dfs(row + x, column + y)
+
+    for i in range(rows):
+        for j in range(columns):
+            if grid[i][j] == "1":
+                dfs(i, j)
+                island_count += 1
+
+    return island_count
+
+
+def num_islands_bfs(grid: List[List[str]]) -> int:
     rows = len(grid)
     columns = len(grid[0])
     visited_elements = set()
